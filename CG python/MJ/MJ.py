@@ -7,8 +7,18 @@ pygame.init()
 display_width = 1368
 display_height = 768
 
-mjlist=['mj1.jpg','mj2.jpg','mj3.jpg','mj4.jpg','mj5.jpg','mj6.jpg','mj7.jpg','mj8.jpg','mj9.jpg','mj10.jpg']
-mjrevlist=['mj1-ConvertImage.jpg','mj2-ConvertImage.jpg','mj3-ConvertImage.jpg','mj4-ConvertImage.jpg','mj5-ConvertImage.jpg','mj6-ConvertImage.jpg','mj7-ConvertImage.jpg','mj8-ConvertImage.jpg','mj9-ConvertImage.jpg','mj10-ConvertImage.jpg']
+mjlist=[]
+mjspinlist=[]
+#mjlist=['mj1.png','mj2.png','mj3.png','mj4.png','mj5.png','mj6.png','mj7.png','mj8.png','mj9.png','mj10.png']
+#mjrevlist=['mj1-ConvertImage.png','mj2-ConvertImage.png','mj3-ConvertImage.png','mj4-ConvertImage.png','mj5-ConvertImage.png','mj6-ConvertImage.png','mj7-ConvertImage.png','mj8-ConvertImage.png','mj9-ConvertImage.png','mj10-ConvertImage.png']
+for i in range(1,27):
+    a='mj'+str(i)
+    mjlist.append(a)
+#print(mjlist)
+for i in range(27,55):
+    a='mj'+str(i)
+    mjspinlist.append(a)
+
 
 gameDisplay = pygame.display.set_mode((display_width,display_height))
 pygame.display.set_caption('MJ')
@@ -20,9 +30,9 @@ clock = pygame.time.Clock()
 crashed = False
 
 w1=0
-
+w2=0
 x = 0
-y = 250
+y = 200#500
 xchange = 5
 
 while not crashed:
@@ -31,24 +41,35 @@ while not crashed:
             crashed = True
 
     mjImg = pygame.image.load(mjlist[w1])
-    mjImgrev = pygame.image.load(mjrevlist[w1])
-    gameDisplay.fill(white)
+    mjspinImg = pygame.image.load(mjspinlist[w2])
+    #mjImgrev = pygame.image.load(mjrevlist[w1])
+    #stageImg=pygame.image.load("stage.jpg")
+    gameDisplay.fill(black)
+    #gameDisplay.blit(stageImg,(0,0))
     pygame.display.flip()
     #pygame.draw.circle(gameDisplay,white,[x+130,y+50],200)
+
     if(xchange==5):
         gameDisplay.blit(mjImg,(x,y))
 
     elif(xchange==-5):
-        gameDisplay.blit(mjImgrev,(x,y))
+        gameDisplay.blit(mjImg,(x,y))
 
     pygame.display.flip()
     x+=xchange
     w1+=1
 
-    if(x>1000 or x<0):
-        xchange=xchange*-1
+    if(x>=1000 or x<0):
+        xchange=0
+        gameDisplay.blit(mjspinImg,(1000,y))
+        pygame.display.flip()
+        w2+=1
+        if(w2>27):
+            w2=0
+            time.sleep(1)
+            #xchange=xchange*-1
 
-    if(w1>9):
+    if(w1>25):
         w1=0
         pygame.display.flip()
 

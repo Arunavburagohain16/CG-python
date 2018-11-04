@@ -50,7 +50,7 @@ while not done:
     for i in range(10000):
         pygame.display.flip()
         #pygame.draw.circle(screen,BLACK,[684,384],100)
-        pygame.draw.rect(screen,random.choice(rect),[rect_x,rect_y,1,1])
+        pygame.draw.rect(screen,(random.randrange(0,255),random.randrange(0,255),random.randrange(0,255)),[rect_x,rect_y,1,1])
 
         rect_x+=rect_change_x
         rect_y+=rect_change_y
