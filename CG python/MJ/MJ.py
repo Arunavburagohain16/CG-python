@@ -9,12 +9,12 @@ display_height = 768
 
 mjlist=[]
 mjspinlist=[]
-#mjlist=['mj1.png','mj2.png','mj3.png','mj4.png','mj5.png','mj6.png','mj7.png','mj8.png','mj9.png','mj10.png']
-#mjrevlist=['mj1-ConvertImage.png','mj2-ConvertImage.png','mj3-ConvertImage.png','mj4-ConvertImage.png','mj5-ConvertImage.png','mj6-ConvertImage.png','mj7-ConvertImage.png','mj8-ConvertImage.png','mj9-ConvertImage.png','mj10-ConvertImage.png']
+
+#List for the images names
 for i in range(1,26):
     a='mj'+str(i)
     mjlist.append(a)
-#print(mjlist)
+
 for i in range(26,55):
     a='mj'+str(i)
     mjspinlist.append(a)
@@ -32,7 +32,7 @@ crashed = False
 w1=0
 w2=0
 x = 0
-y = 200#500
+y = 200
 xchange = 5
 
 while not crashed:
@@ -41,13 +41,11 @@ while not crashed:
             crashed = True
     mjImg = pygame.image.load(mjlist[w1])
     mjspinImg = pygame.image.load(mjspinlist[w2])
-    #mjImgrev = pygame.image.load(mjrevlist[w1])
-    #stageImg=pygame.image.load("stage.jpg")
+
+    #Display for the Changing Bacground Color
     gameDisplay.fill((random.randrange(0,255),random.randrange(0,255),random.randrange(0,255)))
-    #gameDisplay.fill(black)
-    #gameDisplay.blit(stageImg,(0,0))
+
     pygame.display.flip()
-    #pygame.draw.circle(gameDisplay,white,[x+130,y+50],200)
 
     if(xchange==5):
         gameDisplay.blit(mjImg,(x,y))
@@ -59,6 +57,7 @@ while not crashed:
     x+=xchange
     w1+=1
 
+    #Spinning part of MJ
     if(x>=1000 or x<0):
         xchange=0
         gameDisplay.blit(mjspinImg,(1000,y))
@@ -68,7 +67,6 @@ while not crashed:
             w2=0
             x=0
             time.sleep(1)
-            #xchange=xchange*-1
 
     if(x==0):
         xchange=5
