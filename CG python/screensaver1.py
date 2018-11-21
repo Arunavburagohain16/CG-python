@@ -67,7 +67,7 @@ while not done:
 
     pygame.draw.polygon(screen, (15,15,15), [[1+fl,470],[30+fl,490],[60+fl,470]],0)
     pygame.draw.polygon(screen, (15,15,15), [[20+fl,470],[30+fl,460],[40+fl,470]],0)
-    fl+=0.5
+    fl+=100
     if(fl>1376 or fl<0):
         fl=0.5*-1
         lp+=7
